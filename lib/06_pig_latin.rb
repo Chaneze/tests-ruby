@@ -1,18 +1,10 @@
-def check_for_sch(sentence, i)
+def check_for_sch_consonants_qu(sentence, i)
 	if sentence[i] == 's' && sentence[i + 1] == 'c' && sentence[i + 2] == 'h'
 		i = i + 3
 	end
-	return i
-end
-
-def check_for_consonants(sentence, i)
 	while sentence[i] != "a" && sentence[i] != "e" && sentence[i] != "i" && sentence[i] != "o" && sentence[i] != "u"
 		i = i + 1
 	end
-	return i
-end
-
-def check_for_qu(sentence, i)
 	if sentence[i] == 'q' && sentence[i + 1] == 'u'
 		i = i + 2
 	elsif i > 0 && sentence[i - 1] == 'q' && sentence[i] == 'u'
@@ -35,19 +27,18 @@ def translate_word(sentence, i)
 		j = j + 1
 		k = k + 1
 	end
-	new_word[j] = 'a'
-	new_word[j + 1] = 'y'
-	return new_word
+	return new_word + "ay"
 end
 
 def translate(sentence)
 	word = sentence.split
 	size = word.length
 	if size == 1
-		i = check_for_sch(sentence, 0)
-		i = check_for_consonants(sentence, i)
-		i = check_for_qu(sentence, i)
+		i = check_for_sch_consonants_qu(sentence.downcase, 0)
 		new_word = translate_word(sentence, i)
+		if sentence[0] == sentence[0].capitalize
+			new_word = new_word.capitalize
+		end
 	else
 		new_word = String.new
 		j = 0
