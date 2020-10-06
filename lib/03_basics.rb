@@ -28,6 +28,6 @@ def array_42(array)
 	return array.include?(42)
 end
 
-def magic_array(array)
-	return array.flatten.sort.map { |num| num * 2 }.delete_if{|a| a % 3 == 0}.uniq
+def magic_array(a)
+	return a.flatten.sort.map{|n| n*2}.delete_if{|n| n%3==0}.uniq
 end
